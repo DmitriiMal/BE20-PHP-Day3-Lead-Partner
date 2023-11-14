@@ -141,7 +141,9 @@ $ex3Output = getMax($arr);
       <?php
 
       for ($i = 1; $i <= 100; $i++) {
-        if ($i % 3 == 0) {
+        if ($i % 3 == 0 && $i % 5 == 0) {
+          echo "<p class='text-danger-emphasis'>Fullstack</p>";
+        } elseif ($i % 3 == 0) {
           echo "<p class='text-primary-emphasis'>Back-End</p>";
         } elseif ($i % 5 == 0) {
           echo "<p class='text-success-emphasis'>Front-End</p>";
