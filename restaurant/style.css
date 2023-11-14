@@ -1,0 +1,86 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  background: #f4f4f4;
+  color: #333;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+
+.container {
+  width: 90vw;
+  margin: 30px auto;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Card */
+.card {
+  width: 190px;
+  height: 254px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  position: relative;
+}
+
+.remove-when-use {
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  color: black;
+  top: 85px;
+  font-weight: bold;
+}
+
+.details > p {
+  font-size: 0.8em;
+  margin-top: 0.5em;
+}
+
+.details > label {
+  font-weight: bold;
+}
+
+.details {
+  color: white;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  width: 100%;
+  background: #657166;
+  position: absolute;
+  bottom: 0;
+  height: 2.6em;
+  transition: height 0.5s ease-in-out;
+  padding: 0.6em;
+  overflow: hidden;
+}
+
+.card:hover > .details {
+  height: 6.7em;
+}
+
+.details p {
+  margin-bottom: 7px;
+}
+
+.btn {
+  padding: 0.4rem 0.8rem;
+  background: #f3c3b2;
+  color: #333;
+  border-radius: 2px;
+  transition: background 0.2s ease-in-out;
+}
+
+.btn:hover {
+  background: #eeb8a5;
+}
