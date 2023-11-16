@@ -1,4 +1,7 @@
 <?php
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 require_once './db_connect.php';
 
 $sql = "SELECT * FROM dishes";
@@ -14,7 +17,7 @@ if (mysqli_num_rows($result) > 0) {
     <div class='m-03'>
       <div class='card'>
           
-          <img src='{$row['image']}' alt=''>
+          <img src='pictures/{$row['image']}' alt=''>
           <div class='details'>
               <label>{$row['name']}</label>
               <p>&euro; {$row['price']}</p>

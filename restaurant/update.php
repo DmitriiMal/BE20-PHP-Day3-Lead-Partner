@@ -1,26 +1,37 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 require_once './db_connect.php';
 require_once "./file_upload.php";
 
-if (isset($_POST["create"])) {
+$id = $_GET["id"];
+$sql = "SELECT * FROM `dishes` WHERE `dishID` = $_GET[id]";
+$result = mysqli_query($connect, $sql);
+$row = mysqli_fetch_assoc($result);
+
+if (isset($_POST["update"])) {
   $name = $_POST["name"];
   $price = $_POST["price"];
   $picture = fileUpload($_FILES["picture"]);
   $description = $_POST["description"];
   $long_description = $_POST["long_description"];
 
-  $sql = "INSERT INTO `dishes`(`image`, `name`, `description`, `long_description`, `price`) VALUES ('{$picture[0]}','$name','$description','$long_description', $price)";
+  if ($_FILES["picture"]["error"] == 0) {
+
+    if ($row["image"] != "product.png") {
+      unlink("pictures/$row[image]");
+    }
+    $sql = "UPDATE dishes SET image = '$picture[0]', name = '$name', description = '$description', long_description = '$long_description' , price = $price  WHERE id = {$id}";
+  } else {
+    $sql = "UPDATE dishes SET name = '$name', description = '$description', long_description = '$long_description' , price = $price  WHERE id = {$id}";
+  }
+
   if (mysqli_query($connect, $sql)) {
     echo "<div class='alert alert-success pt-120' role='alert'>
-           New record has been created, {$picture[0]}
-         </div>";
+    product has been updated, {$picture[1]}
+  </div>";
     header("refresh: 3; url= index.php");
   } else {
     echo "<div class='alert alert-danger pt-120' role='alert'>
-           error found, {$picture[0]}
+           error found, {$picture[1]}
          </div>";
   }
 }
@@ -67,7 +78,7 @@ mysqli_close($connect);
         <label for="picture" class="form-label">Picture</label>
         <input type="file" class="form-control" id="picture" aria-describedby="picture" name="picture">
       </div>
-      <button name="create" type="submit" class="btn btn-dark me-3">Create product</button>
+      <button name="update" type="submit" class="btn btn-dark me-3">Update product</button>
       <a href="index.php" class="btn btn-outline-secondary">Back to home page</a>
     </form>
   </div>
