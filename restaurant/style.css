@@ -16,6 +16,10 @@ a {
   text-decoration: none;
 }
 
+.pt-120 {
+  padding-top: 120px;
+}
+
 .container {
   width: clamp(500px, 80%, 1200px);
   margin: 30px auto;
